@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f1e8;
+  --foreground: #16362d;
+  --color-cream: #f6f1e8;
+  --color-sage: #a8d5ba;
+  --color-moss: #6e8f7b;
+  --color-sea: #c5d7df;
+  --color-deep: #16362d;
+  --color-stone: #7a857d;
+  --color-sand: #ebe2d5;
+  --color-foam: #fcfaf5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--color-cream);
+  --color-sage: var(--color-sage);
+  --color-moss: var(--color-moss);
+  --color-sea: var(--color-sea);
+  --color-deep: var(--color-deep);
+  --color-stone: var(--color-stone);
+  --color-sand: var(--color-sand);
+  --color-foam: var(--color-foam);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-newsreader);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.78), transparent 28%),
+    linear-gradient(180deg, #fbf8f2 0%, #f6f1e8 52%, #efe7db 100%);
+  color: var(--foreground);
+  font-family: var(--font-manrope), sans-serif;
+}
+
+::selection {
+  background: rgba(168, 213, 186, 0.55);
+  color: var(--color-deep);
+}
+
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 70px rgba(22, 54, 45, 0.1);
+  }
+
+  .section-ring {
+    position: relative;
+  }
+
+  .section-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    box-shadow:
+      inset 0 0 0 1px rgba(168, 213, 186, 0.18),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+
+  .soft-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-drift {
+    animation: drift 8s ease-in-out infinite;
+  }
+
+  .animate-breathe {
+    animation: breathe 4.4s ease-in-out infinite;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
